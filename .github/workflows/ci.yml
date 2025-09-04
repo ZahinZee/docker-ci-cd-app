@@ -59,9 +59,6 @@ jobs:
   release:
     needs: qa
     runs-on: ubuntu-latest
-    if: release:
-    needs: qa
-    runs-on: ubuntu-latest
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
 
     steps:
@@ -111,7 +108,7 @@ jobs:
         echo "**Pull Command:**" >> $GITHUB_STEP_SUMMARY
         echo '```bash' >> $GITHUB_STEP_SUMMARY
         echo "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_STEP_SUMMARY
-        
+  
 
 
     
